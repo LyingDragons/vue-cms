@@ -1,11 +1,33 @@
+//vue
 import Vue from 'vue'
-import { Header } from 'mint-ui';
-Vue.component(Header.name, Header);
 
+//路由
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+//导入自己路由
+import router from './router.js'
+
+//导入vue-resource
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+
+
+
+//按需导入mui组件
+import { Header,Swipe, SwipeItem  } from 'mint-ui';
+Vue.component(Header.name, Header); 
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
+
+//mui 样式
 import './lib/mui/css/mui.css'
+import './lib/mui/css/icons-extra.css'
+
+
 import app from './App.vue'
 
 var vm=new Vue({
 	el:'#app',
-	render: c => c(app)
+	render: c => c(app),
+	router    //挂载路由
 })
