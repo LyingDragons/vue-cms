@@ -11,7 +11,7 @@ import router from './router.js'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
-
+Vue.http.options.root='http://www.liulongbin.top:3005';
 
 //按需导入mui组件
 import { Header,Swipe, SwipeItem  } from 'mint-ui';
