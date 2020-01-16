@@ -2,9 +2,14 @@
 <div class="app-content">
 	<mt-header fixed title="餐饮系统"></mt-header>
 	
+	<transition>
+		<router-view></router-view>
+	</transition>
 	
-	<router-view></router-view>
 	
+
+
+	<!--底部bar-->
 			<nav class="mui-bar mui-bar-tab">
 				<router-link class="mui-tab-item mui-active" to="/home">
 					<span class="mui-icon mui-icon-home"></span>
@@ -35,5 +40,23 @@
 <style>
 	.app-content{
 		padding: 2.5rem;
+		overflow-x: hidden;
 	}
+
+	.v-enter{
+		opacity: 0;
+		transform: translateX(100%);
+	}
+
+	.v-leave-to{
+		opacity: 0;
+		transform: translateX(-100%);
+		position: absolute;
+	}
+
+	.v-enter-active,
+	.v-leave-active{
+		transition: all 0.5s ease
+	}
+
 </style>
