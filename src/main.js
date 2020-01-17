@@ -13,6 +13,12 @@ Vue.use(VueResource)
 
 Vue.http.options.root='http://www.liulongbin.top:3005';
 
+import moment from 'moment'
+//定义全局过滤器
+Vue.filter('dateFormat',function(dataStr,pattern='YYYY-MM-DD HH:mm:ss'){
+	return moment(dataStr).format(pattern)
+})
+
 //按需导入mui组件
 import { Header,Swipe, SwipeItem  } from 'mint-ui';
 Vue.component(Header.name, Header); 

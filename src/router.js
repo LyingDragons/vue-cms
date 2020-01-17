@@ -6,11 +6,13 @@ import member from './components/tabbar/member.vue'
 import search from './components/tabbar/search.vue'
 import shopcar from './components/tabbar/shopcar.vue'
 import newslist from './news/newsList.vue'
+import newsinfo from './news/newsinfo.vue'
 
 // 3. 创建路由对象
 var router = new VueRouter({
   routes: [ 
 	  {path:'/',redirect:'/home'},
+	  {path:'/home/newsinfo/:id',component:newsinfo},
 	  {path:'/home/newslist',component:newslist},
 	  {path: '/home',component:home },
 	  {path: '/member',component:member },

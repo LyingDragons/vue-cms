@@ -39,8 +39,10 @@
 
 <style>
 	.app-content{
-		padding: 2.5rem;
+		padding-top: 2.5rem;
+		padding-bottom: 50px;
 		overflow-x: hidden;
+		
 	}
 
 	.v-enter{
