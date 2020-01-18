@@ -6,7 +6,6 @@
 
         <mt-button type='primary' size='large'>发表评论</mt-button>
 
-        <div.cmt
 
         <mt-button type='danger' size='large' plain>加载更多</mt-button>
     </div>
