@@ -1,17 +1,29 @@
 <template>
     <div class="newsibfo-contain">
+        <!-- 大标题-->
         <h3 class="title">{{newsinfo.title}}</h3>
+
+         <!-- 小标题-->
         <p class="subtitle">
             <span>发表时间：{{newsinfo.add_time | dateFormat}}</span>
             <span>点击次数: {{newsinfo.click}}</span>
         </p>
         <hr>
+
+         <!-- 内容-->
         <div class="content" v-html="newsinfo.content"></div>
+
+
+         <!-- 评论-->
+         <comment-box></comment-box>
     </div>
 </template>
 
 <script>
 	import {Toast} from 'mint-ui'
+    import comment from "../components/subcomponents/comment.vue"
+
+
 export default {
 
     data () {
@@ -33,6 +45,10 @@ export default {
                 }
             })
         }
+    },
+    components: {
+        //注册子组件的节点
+        'comment-box' : comment
     }
     
 }
