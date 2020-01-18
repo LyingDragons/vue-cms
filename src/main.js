@@ -12,6 +12,8 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
 Vue.http.options.root='http://www.liulongbin.top:3005';
+//设置post表单格式数据
+Vue.http.options.emulateJSON=true;
 
 import moment from 'moment'
 //定义全局过滤器
