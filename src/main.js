@@ -20,10 +20,11 @@ Vue.filter('dateFormat',function(dataStr,pattern='YYYY-MM-DD HH:mm:ss'){
 })
 
 //按需导入mui组件
-import { Header,Swipe, SwipeItem  } from 'mint-ui';
+import { Header,Swipe, SwipeItem,Button } from 'mint-ui';
 Vue.component(Header.name, Header); 
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 
 //mui 样式
 import './lib/mui/css/mui.css'
