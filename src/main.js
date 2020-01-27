@@ -22,11 +22,18 @@ Vue.filter('dateFormat',function(dataStr,pattern='YYYY-MM-DD HH:mm:ss'){
 })
 
 //按需导入mui组件
-import { Header,Swipe, SwipeItem,Button } from 'mint-ui';
-Vue.component(Header.name, Header); 
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Button.name, Button);
+// import { Header,Swipe, SwipeItem,Button,Lazyload  } from 'mint-ui';
+// Vue.use(Lazyload);
+// Vue.component(Header.name, Header); 
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
+// Vue.component(Button.name, Button);
+
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
+
+Vue.use(MintUI)
 
 //mui 样式
 import './lib/mui/css/mui.css'

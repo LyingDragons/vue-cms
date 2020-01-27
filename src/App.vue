@@ -37,7 +37,7 @@
 </script>
 
 
-<style>
+<style lang="scss" scoped>
 	.app-content{
 		padding-top: 2.5rem;
 		padding-bottom: 50px;
@@ -61,8 +61,6 @@
 		transition: all 0.5s ease
 	}
 
-
-	<!--解决引入图片导航tabbar无法滑动问题-->
 	.mui-bar-tab .mui-tab-item-mj.mui-active {
     color: #007aff;
 	}
@@ -92,5 +90,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.mint-header{
+	z-index: 99;
+}
 </style>
