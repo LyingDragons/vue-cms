@@ -37,7 +37,7 @@ export default {
         getComments(){
             this.$http.get("api/getcomments/"+this.id+"?pageindex="+this.pageindex).then(result=>{
                 if(result.body.status===0){
-                    console.log(result.body)
+                
                     this.comments=this.comments.concat(result.body.message);
                 }else{
                     Toast("获取评论失败")

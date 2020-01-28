@@ -8,6 +8,7 @@ import shopcar from './components/tabbar/shopcar.vue'
 import newslist from './news/newsList.vue'
 import newsinfo from './news/newsinfo.vue'
 import photolist from './components/photos/photolist.vue' 
+import photoinfo from './components/photos/photoinfo.vue' 
 
 // 3. 创建路由对象
 var router = new VueRouter({
@@ -19,7 +20,8 @@ var router = new VueRouter({
 	  {path: '/home',component:home },
 	  {path: '/member',component:member },
 	  {path: '/search',component:search },
-	  {path: '/shopcar',component:shopcar }
+	  {path: '/shopcar',component:shopcar },
+	  {path: '/home/photoinfo/:id',component:photoinfo }
   ],
   linkActiveClass: 'mui-active'
 })

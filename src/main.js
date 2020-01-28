@@ -39,6 +39,10 @@ Vue.use(MintUI)
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
 
+//VuePreview
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
 
 import app from './App.vue'
 
