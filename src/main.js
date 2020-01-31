@@ -11,6 +11,69 @@ import router from './router.js'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
+//注册vuex
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+//先调用main.js  先从本地存储中读出来
+var car= JSON.parse(localStorage.getItem('car')||'[]')
+
+var store =new Vuex.Store({
+	state:{ //this.$store.state.***
+		car:car
+	},
+	mutations:{
+		addToCar(state,goodsinfo){
+			//1.如果有，增加
+			//2.没有，则push
+			var flag=false;   //没有找到对应商品
+
+			state.car.some(item=>{
+				if(item.id==goodsinfo.id){
+					item.count+=parseInt(goodsinfo.count) 
+					flag=true;
+					return true;
+				}
+			})
+			if(!flag){
+				state.car.push(goodsinfo)
+			}
+			//存储
+			localStorage.setItem('car',JSON.stringify(state.car))
+		},
+		updateGoodsinfo(state,goodsinfo){
+			//修改+  -
+			state.car.some(item=>{
+				if(item.id==goodsinfo.id){
+					item.count=parseInt(goodsinfo.count)
+					return true
+				}
+			})
+			//存储
+			localStorage.setItem('car',JSON.stringify(state.car))
+		}
+	},
+	getters:{
+
+		getAllCount(state){
+			var c=0;
+			state.car.forEach(item=>{
+				c+=item.count;
+
+			})
+			return c;
+		},
+		getGoodsCount(state){
+			var o={}
+			state.car.forEach(item=>{
+				o[item.id]=item.count
+			})
+			return o
+		}
+	}
+
+});
+
 Vue.http.options.root='http://www.liulongbin.top:3005';
 //设置post表单格式数据
 Vue.http.options.emulateJSON=true;
@@ -49,5 +112,6 @@ import app from './App.vue'
 var vm=new Vue({
 	el:'#app',
 	render: c => c(app),
-	router    //挂载路由
+	router,    //挂载路由
+	store      //状态管理
 })

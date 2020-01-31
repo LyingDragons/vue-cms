@@ -1,9 +1,6 @@
 <template>
   <div class="goodsinfo-contain">
-    <transition
-    @before-enter="beforeEnter"
-    @enter="enter"
-    @after-enter="afterEnter">
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
       <div class="ball" v-show="ballFlag" ref="ball"></div>
     </transition>
 
@@ -69,8 +66,8 @@ export default {
       id: this.$route.params.id,
       lunbotu: [],
       goodsinfo: {},
-      ballFlag: false ,//小球
-      selectedCount: 1  //用户选中数量
+      ballFlag: false, //小球
+      selectedCount: 1 //用户选中数量
     };
   },
   created() {
@@ -104,31 +101,44 @@ export default {
     addToShopCar() {
       //添加购物车
       this.ballFlag = !this.ballFlag;
+
+      //添加数据
+      //拼接出保存到store的car的数据
+      var goodsinfo = {
+        id: this.id,
+        count: this.selectedCount,
+        price: this.goodsinfo.sell_price,
+        selected: true
+      };
+      //调用store里的mou方法
+      this.$store.commit("addToCar",goodsinfo)
     },
-    beforeEnter(el){
-      el.style.transform="translate(0,0)";
+    beforeEnter(el) {
+      el.style.transform = "translate(0,0)";
     },
-    enter(el,done){
+    enter(el, done) {
       el.offsetWidth;
       //获取小球的位置
-      const ballPosition=this.$refs.ball.getBoundingClientRect();
-      const badgePosition=document.getElementById("badge").getBoundingClientRect();
+      const ballPosition = this.$refs.ball.getBoundingClientRect();
+      const badgePosition = document
+        .getElementById("badge")
+        .getBoundingClientRect();
 
-      const xDist=badgePosition.left-ballPosition.left;
-      const yDist=badgePosition.top-ballPosition.top;
+      const xDist = badgePosition.left - ballPosition.left;
+      const yDist = badgePosition.top - ballPosition.top;
 
       // console.log(xDist)
       // console.log(yDist)
-      el.style.transform='translate('+xDist+'px,' +yDist+'px)';
-      el.style.transition="all 0.5s cubic-bezier(.4,-0.3,1,.68)";
+      el.style.transform = "translate(" + xDist + "px," + yDist + "px)";
+      el.style.transition = "all 0.5s cubic-bezier(.4,-0.3,1,.68)";
       done();
     },
-    afterEnter(el){
+    afterEnter(el) {
       this.ballFlag = !this.ballFlag;
     },
-    getSelectedCount(count){
+    getSelectedCount(count) {
       //子组件传递给父组件
-      this.selectedCount=count;
+      this.selectedCount = count;
       // console.log(this.selectedCount)
     }
   },
@@ -166,7 +176,6 @@ export default {
     z-index: 99;
     top: 390px;
     left: 146px;
-    
   }
 }
 </style>
