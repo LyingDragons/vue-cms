@@ -28,7 +28,7 @@
             </p>
             <p>
               购买数量：
-              <numberbox></numberbox>
+              <numberbox @getcount="getSelectedCount" :max="goodsinfo.stock_quantity"></numberbox>
             </p>
 
             <p>
@@ -69,7 +69,8 @@ export default {
       id: this.$route.params.id,
       lunbotu: [],
       goodsinfo: {},
-      ballFlag: false //小球
+      ballFlag: false ,//小球
+      selectedCount: 1  //用户选中数量
     };
   },
   created() {
@@ -116,14 +117,19 @@ export default {
       const xDist=badgePosition.left-ballPosition.left;
       const yDist=badgePosition.top-ballPosition.top;
 
-      console.log(xDist)
-      console.log(yDist)
+      // console.log(xDist)
+      // console.log(yDist)
       el.style.transform='translate('+xDist+'px,' +yDist+'px)';
-      el.style.transition="all 1s cubic-bezier(.4,-0.3,1,.68)";
+      el.style.transition="all 0.5s cubic-bezier(.4,-0.3,1,.68)";
       done();
     },
     afterEnter(el){
       this.ballFlag = !this.ballFlag;
+    },
+    getSelectedCount(count){
+      //子组件传递给父组件
+      this.selectedCount=count;
+      // console.log(this.selectedCount)
     }
   },
   components: {
