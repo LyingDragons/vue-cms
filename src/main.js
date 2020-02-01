@@ -21,6 +21,7 @@ var car= JSON.parse(localStorage.getItem('car')||'[]')
 var store =new Vuex.Store({
 	state:{ //this.$store.state.***
 		car:car
+		//car {id:  count:  price:  selected:}
 	},
 	mutations:{
 		addToCar(state,goodsinfo){
@@ -51,6 +52,24 @@ var store =new Vuex.Store({
 			})
 			//存储
 			localStorage.setItem('car',JSON.stringify(state.car))
+		},
+		removeFromCar(state,id){
+			state.car.some((item,i)=>{
+				if(item.id=id){
+					state.car.splice(i,1)
+					return true;
+				}
+			})
+			//将删除完毕的购物车同步到
+			localStorage.setItem('car',JSON.stringify(state.car))
+		},
+		updategoodsSelected(state,info){
+			state.car.some(item=>{
+				if(item.id==info.id){
+					item.selected=info.selected;
+				}
+			})
+			localStorage.setItem('car',JSON.stringify(state.car))
 		}
 	},
 	getters:{
@@ -69,6 +88,27 @@ var store =new Vuex.Store({
 				o[item.id]=item.count
 			})
 			return o
+		},
+		getGoodsSeleced(state){
+			var o={}
+			state.car.forEach(item=>{
+				o[item.id]=item.selected
+			})
+			return o;
+		},
+		getGoodscountprice(state){
+			var o={
+				count:0,
+				amount:0
+			}
+			state.car.forEach(item=>{
+				if(item.selected){
+					o.count+=item.count
+					o.amount+=item.price*item.count
+				}
+			})
+			return o
+
 		}
 	}
 
